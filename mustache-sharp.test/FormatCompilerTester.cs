@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Mustache.Test
@@ -1377,15 +1379,15 @@ Your order total was: {{Total:C}}
                     }
                 }
             });
-            const string expected = @"Hello Bob:
+            string expected = $@"Hello Bob:
 
 Below are your order details:
 
-    Banana: $2.50 x 1
-    Orange: $0.50 x 5
-    Apple: $0.25 x 10
+    Banana: {2.50:C} x 1
+    Orange: {0.50:C} x 5
+    Apple: {0.25:C} x 10
 
-Your order total was: $7.50";
+Your order total was: {7.50:C}";
             Assert.AreEqual(expected, result, "The wrong text was generated.");
         }
 
